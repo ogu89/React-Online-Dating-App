@@ -16,7 +16,7 @@ function App() {
       </nav>
       <Routes>
         <Route path="/" element={<UserList />} />
-        <Route path="/user/id" element={<UserDetail />} />
+        <Route path="/user/id/" element={<UserDetail />} />
         <Route path="/user/id/chat" element={<Chat />} />
         <Route path="/message-list" element={<MessageList />} />
       </Routes>
