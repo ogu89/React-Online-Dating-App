@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from "react-redux";
 
 function MessageList(){
-    const count = useSelector((state) => state.count);
+    const count = useSelector((state) => state.users.count);
 
 
     return(
