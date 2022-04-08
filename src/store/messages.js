@@ -3,8 +3,16 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const messagesSlice = createSlice({
     name: 'messages',
-    initialState: { isLoggedIn: false },
+    initialState: {
+        users : {
+            1: [],
+            2: []
+        },
+    },
     reducers:{
+        setMessages(state, payload){
+
+        },
         login(state){
             state.isLoggedIn = true; 
         },
