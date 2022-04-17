@@ -4,9 +4,9 @@ import usersSlice from "./users";
 
 const store = configureStore({
     reducer: {
-        users: usersSlice.reducer,
+        users: usersSlice,
         messages: messagesSlice.reducer
     }
-});
+});  
 
 export default store;
