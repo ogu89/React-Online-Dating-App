@@ -15,9 +15,7 @@ function UserList() {
     if (!isSetProfile) dispatch(fetchUser());
   }, []);
 
-  // const getItem = () => {
-  //   dispatch(fetchUser());
-  // }
+
 
   console.log(users);
   console.log(typeof users);
@@ -29,24 +27,25 @@ function UserList() {
   return (
     <div>
       <h1>User List</h1>
-      <button>btn</button>
-      {users.map((item) => (
-        <h2>{item.gender}</h2>
-      ))}
-
-      {/* {users.map((user) => (
-        <h1>{user.id}</h1>
+      {/* {users.map((item) => (
+        <h2>{item.gender} </h2>
+        
       ))} */}
-      {/* {items.map((item) => (
+
+
+      {users.map((item) => (
         <UserCard
           key={item.id}
           name={item.name}
-          category={item.category}
-          price={item.price}
-          date={item.date}
-          imgUrl={item.imgUrl}
+          gender={item.gender}
+          age={item.age}
+          country={item.country}
+          state={item.state}
+          city={item.city}
+          email={item.email}
+          imgUrl={item.picture.medium}
         />
-      ))} */}
+      ))}
     </div>
   );
 }

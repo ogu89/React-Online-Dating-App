@@ -5,16 +5,19 @@ import UserList from  "./pages/UserList"
 import UserDetail from "./pages/UserDetail"
 import Chat from "./pages/Chat"
 import MessageList from "./pages/MessageList";
+import Header from "./components/Header";
 
 function App() {
   return (
-    <Router>
-      <nav>
+    <Router> 
+      <Header />
+      {/* <nav>
         <Link to="/user"> UserList </Link>
         <Link to="/user/id"> UserDetail </Link>
         <Link to="/user/id/chat"> Chat </Link>
         <Link to="/message-list"> Message </Link>
-      </nav>
+      </nav> */}
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/user" element={<UserList />} />
@@ -23,6 +26,7 @@ function App() {
         <Route path="/message-list" element={<MessageList />} />
       </Routes>
     </Router>
+    
   );
 }
 

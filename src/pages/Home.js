@@ -13,7 +13,7 @@ function Home(){
     return(
         <div>
             <h1>Home</h1>
-            <Button onClick={handleClick}>Meet new people</Button>
+            <Button onClick={handleClick}>Meet new people </Button>
         </div>
         
     );

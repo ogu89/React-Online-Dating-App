@@ -2,9 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchUser = createAsyncThunk("users/fetchUser", async () => {
-  // return fetch("https://randomuser.me/api/?results=50").then((res) =>
-  //   res.json()
-  // );
   const response = await axios.get("https://randomuser.me/api/?results=50");
   let users = [];
   for (let user of response.data.results) {
