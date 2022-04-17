@@ -2,30 +2,53 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchUser = createAsyncThunk("users/fetchUser", async () => {
-  // return fetch("https://randomuser.me/api/?results=100").then((res) =>
+  // return fetch("https://randomuser.me/api/?results=50").then((res) =>
   //   res.json()
-  // ).then((data) => 
-  console.log("l;dfkjs")
-  const response = await axios.get("https://randomuser.me/api/?results=100");
-  return response.data
+  // );
+  const response = await axios.get("https://randomuser.me/api/?results=50");
+  let users = [];
+  for (let user of response.data.results) {
+    users.push({
+      id: user.login.uuid,
+      name: user.name.first + " " + user.name.last,
+      gender: user.gender,
+      age: user.dob.age,
+      country: user.location.country,
+      state: user.location.state,
+      city: user.location.city,
+      email: user.email,
+      picture: user.picture,
+    });
+  }
+
+  return users;
 });
 
 const usersSlice = createSlice({
   name: "users",
   initialState: {
-    list: [],
-    status: null,
+    users: [],
+    // status: null,
+    loading: false,
+    isSetProfile: false,
+    count: 0,
   },
-  reducers: {
+  extraReducers: {
     [fetchUser.pending]: (state, action) => {
-      state.status = "loading";
+      // state.status = "loading";
+      state.loading = true;
     },
-    [fetchUser.fulfilled]: (state, action) => {
-      state.list = [action.payload];
-      state.status = "success";
+    [fetchUser.fulfilled]: (state, { payload }) => {
+      // state.users = payload.results;
+      state.users = payload;
+      state.count += 1;
+      state.loading = false;
+      state.isSetProfile = true;
+      // state.status = "success";
     },
     [fetchUser.rejected]: (state, action) => {
-      state.status = "failed";
+      // state.status = "failed";``
+      state.loading = false;
     },
   },
 });
