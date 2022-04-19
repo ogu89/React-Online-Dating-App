@@ -14,10 +14,13 @@ import { MenuData } from "./MenuData";
 import { useNavigate } from "react-router-dom";
 
 function Header(props) {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(0);
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   return (
     <React.Fragment>
@@ -26,8 +29,10 @@ function Header(props) {
           <InterestsIcon />
           {isMatch ? (
             <>
-              <Typography sx={{fontSize: "2rem", paddingLeft: "10%"}}>Shoppe</Typography>
-              <DrawerComp /> 
+              <Typography sx={{ fontSize: "2rem", paddingLeft: "10%" }}>
+                Dating
+              </Typography>
+              <DrawerComp />
             </>
           ) : (
             <>
@@ -36,12 +41,20 @@ function Header(props) {
                 textColor="inherit"
                 sx={{ margin: "auto" }}
                 value={value}
-                onChange={(e, value) => setValue(value)}
+                onChange={handleChange}
                 indicatorColor="secondary"
               >
                 {MenuData.map((val, key) => {
-                    return(<Tab key={key} label={val.title} onClick={() =>{ navigate(`${val.link}`); }}/>)
-                    
+                  return (
+                    <Tab
+                      key={key}
+                      label={val.title}
+                      value={key}
+                      onClick={() => {
+                        navigate(`${val.link}`);
+                      }}
+                    />
+                  );
                 })}
                 {/* <Tab label="UserList" />
                 <Tab label="Message" /> */}

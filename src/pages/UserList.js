@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Container, Grid } from "@mui/material";
 
 import React from "react";
 import { useEffect } from "react";
@@ -15,8 +15,6 @@ function UserList() {
     if (!isSetProfile) dispatch(fetchUser());
   }, []);
 
-
-
   console.log(users);
   console.log(typeof users);
 
@@ -26,26 +24,23 @@ function UserList() {
 
   return (
     <div>
-      <h1>User List</h1>
-      {/* {users.map((item) => (
-        <h2>{item.gender} </h2>
-        
-      ))} */}
-
-
-      {users.map((item) => (
-        <UserCard
-          key={item.id}
-          name={item.name}
-          gender={item.gender}
-          age={item.age}
-          country={item.country}
-          state={item.state}
-          city={item.city}
-          email={item.email}
-          imgUrl={item.picture.medium}
-        />
-      ))}
+      <Container>
+        <Grid container spacing={5}>
+          {users.map((item) => (
+            <UserCard
+              key={item.id}
+              name={item.name}
+              gender={item.gender}
+              age={item.age}
+              country={item.country}
+              state={item.state}
+              city={item.city}
+              email={item.email}
+              imgUrl={item.picture.large}
+            />
+          ))}
+        </Grid>
+      </Container>
     </div>
   );
 }

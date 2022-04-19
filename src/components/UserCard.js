@@ -1,24 +1,25 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { CardActionArea, Grid } from "@mui/material";
 
 function UserCard(props) {
   const count = useSelector((state) => state.users.users);
 
   return (
-    <>
-      <div className="card m-2" style={{ width: "18rem" }}>
-        <div className="card-body">
-          <img src={props.imgUrl} className="card-img-top" alt="..." />
-          <h5 className="card-title pt-2">{props.name}</h5>
-          <p className="card-text">Gender: {props.gender}</p>
-          <p className="card-text">Age: {props.age}</p>
-          <p className="card-text">Country:{props.country}</p>
-          <p className="card-text">state:{props.state}</p>
-          <p className="card-text">city:{props.city}</p>
-          <p className="card-text">email:{props.email}</p>
-        </div>
-      </div>
-    </>
+    <Grid item xs={4}>
+      <Card sx={{ maxWidth: 345 }}>
+        <CardActionArea>
+          <CardMedia component="img" image={props.imgUrl} />
+          <Typography variant="h5">{props.name}</Typography>
+          <Typography variant="p">{props.country}</Typography>
+          <Typography variant="p">{props.age}</Typography>
+        </CardActionArea>
+      </Card>
+    </Grid>
   );
 }
 

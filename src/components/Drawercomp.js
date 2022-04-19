@@ -17,10 +17,11 @@ const DrawerComp = () => {
     <React.Fragment>
       <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
         <List>
-          {MenuData.map((val) => {
+          {MenuData.map((val, key) => {
             return (
               // <Tab key={key} label={val.title} onClick={() =>{ navigate(`${val.link}`); }}/>
               <ListItemButton
+                key={key}
                 onClick={() => {
                   setOpenDrawer(false);
                   navigate(`${val.link}`);
