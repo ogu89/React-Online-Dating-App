@@ -11,13 +11,6 @@ function App() {
   return (
     <Router> 
       <Header />
-      {/* <nav>
-        <Link to="/user"> UserList </Link>
-        <Link to="/user/id"> UserDetail </Link>
-        <Link to="/user/id/chat"> Chat </Link>
-        <Link to="/message-list"> Message </Link>
-      </nav> */}
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/user" element={<UserList />} />

@@ -10,12 +10,15 @@ import {
 } from "@mui/material";
 import InterestsIcon from "@mui/icons-material/Interests";
 import DrawerComp from "./Drawercomp";
+import { MenuData } from "./MenuData";
+import { useNavigate } from "react-router-dom";
 
 function Header(props) {
   const [value, setValue] = useState();
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
-  console.log();
+  const navigate = useNavigate();
+
   return (
     <React.Fragment>
       <AppBar position="fixed" sx={{ background: "#063970 " }}>
@@ -36,8 +39,12 @@ function Header(props) {
                 onChange={(e, value) => setValue(value)}
                 indicatorColor="secondary"
               >
-                <Tab label="UserList" />
-                <Tab label="Message" />
+                {MenuData.map((val, key) => {
+                    return(<Tab key={key} label={val.title} onClick={() =>{ navigate(`${val.link}`); }}/>)
+                    
+                })}
+                {/* <Tab label="UserList" />
+                <Tab label="Message" /> */}
               </Tabs>
             </>
           )}
