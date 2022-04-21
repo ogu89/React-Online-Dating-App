@@ -12,11 +12,11 @@ function App() {
     <Router> 
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/user" element={<UserList />} />
-        <Route path="/user/id/" element={<UserDetail />} />
-        <Route path="/user/id/chat" element={<Chat />} />
-        <Route path="/message-list" element={<MessageList />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/user' element={<UserList />} />
+        <Route path='/user/:id' element={<UserDetail />} />
+        <Route path='/user/:id/chat' element={<Chat />} />
+        <Route path='/message-list' element={<MessageList />} />
       </Routes>
     </Router>
     

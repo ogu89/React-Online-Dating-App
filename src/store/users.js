@@ -21,6 +21,22 @@ export const fetchUser = createAsyncThunk("users/fetchUser", async () => {
   return users;
 });
 
+export const getUserById = (id) => {
+  // return state.users.find(e => e.id == id);
+  console.log(id);
+  console.log(usersSlice.reducer.state);
+  // console.log(usersSlice.users)
+  // console.log(getState().users);
+  return 1;
+}
+
+// export const getUserById = (id) => {
+//   return async (dispatch, getState) => {
+//        const currentState= getState().users;
+//       console.log(currentState) 
+//   };
+// };
+
 const usersSlice = createSlice({
   name: "users",
   initialState: {
@@ -44,7 +60,7 @@ const usersSlice = createSlice({
       // state.status = "success";
     },
     [fetchUser.rejected]: (state, action) => {
-      // state.status = "failed";``
+      // state.status = "failed";
       state.loading = false;
     },
   },

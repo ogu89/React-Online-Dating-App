@@ -1,4 +1,4 @@
-import { Button, Container, Grid } from "@mui/material";
+import { Button, CircularProgress, Container, Grid } from "@mui/material";
 
 import React from "react";
 import { useEffect } from "react";
@@ -15,11 +15,9 @@ function UserList() {
     if (!isSetProfile) dispatch(fetchUser());
   }, []);
 
-  console.log(users);
-  console.log(typeof users);
 
   if (loading) {
-    return <h2>loading.....</h2>;
+    return <CircularProgress />;
   }
 
   return (
@@ -29,6 +27,7 @@ function UserList() {
           {users.map((item) => (
             <UserCard
               key={item.id}
+              id={item.id}
               name={item.name}
               gender={item.gender}
               age={item.age}
