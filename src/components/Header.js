@@ -24,7 +24,7 @@ function Header(props) {
 
   return (
     <React.Fragment>
-      <AppBar position="fixed" sx={{ background: "#063970 " }}>
+      <AppBar position="sticky" sx={{ background: "#063970 " }}>
         <Toolbar>
           <InterestsIcon />
           {isMatch ? (

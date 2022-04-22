@@ -1,4 +1,4 @@
-import { Button, CircularProgress, Container, Grid } from "@mui/material";
+import { Box, Button, CircularProgress, Container, Grid } from "@mui/material";
 
 import React from "react";
 import { useEffect } from "react";
@@ -17,7 +17,9 @@ function UserList() {
 
 
   if (loading) {
-    return <CircularProgress />;
+    return(<Box sx={{ display: 'flex' }}>
+    <CircularProgress />
+  </Box>); 
   }
 
   return (
