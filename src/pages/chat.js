@@ -7,6 +7,7 @@ import {
   ListItemText,
   Paper,
   TextField,
+  Container,
 } from "@mui/material";
 import React from "react";
 import { makeStyles } from "@mui/styles";
@@ -33,8 +34,18 @@ function Chat() {
   const location = useLocation();
   const classes = useStyles();
 
+  //   const [chatMessages, setChatMeesages] = useState([]);
+
+  //   const listChatMessages = chatMessages.map((chatMessagesDto, index) =>{
+  //     <ListItem key={index}>
+  //         <ListItemText primary={`${chatMessageDto.user}: ${chatMessageDto.message}`}></ListItemText>
+  //     </ListItem>
+  //   })
+
   return (
     <>
+    <Paper>
+      <Container>
         <List className={classes.messageArea}>
           <ListItem key="1">
             <Grid container>
@@ -76,21 +87,23 @@ function Chat() {
             </Grid>
           </ListItem>
         </List>
-        <Divider />
-        <Grid container style={{ padding: "20px" }}>
-          <Grid item xs={11}>
-            <TextField
-              id="outlined-basic-email"
-              label="Type Something"
-              fullWidth
-            />
-          </Grid>
-          <Grid item align="right" xs={1}>
-            <Fab color="primary" aria-label="add">
-              <SendIcon />
-            </Fab>
-          </Grid>
+      </Container>
+      <Divider />
+      <Grid container style={{ padding: "20px" }}>
+        <Grid item xs={11}>
+          <TextField
+            id="outlined-basic-email"
+            label="Type Something"
+            fullWidth
+          />
         </Grid>
+        <Grid item align="right" xs={1}>
+          <Fab color="primary" aria-label="add">
+            <SendIcon />
+          </Fab>
+        </Grid>
+      </Grid>
+    </Paper>
     </>
   );
 }
