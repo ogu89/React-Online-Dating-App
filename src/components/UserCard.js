@@ -4,8 +4,15 @@ import Card from "@mui/material/Card";
 // import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions, Grid } from "@mui/material";
-import TransitionsModal from "./TransitionsModal";
+import {
+  Avatar,
+  Box,
+  Button,
+  CardActionArea,
+  CardActions,
+  Grid,
+} from "@mui/material";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useNavigate } from "react-router-dom";
 
 function UserCard(props) {
@@ -15,36 +22,53 @@ function UserCard(props) {
   return (
     <>
       <Grid item xs={4}>
-        <Card sx={{ maxWidth: 345 }}>
-          <CardActionArea>
-            <CardMedia component="img" image={props.imgUrl} />
+        <Card sx={{ maxWidth: 345, py: 2 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            {/* <CardActionArea> */}
+            {/* <CardMedia component="img" image={props.imgUrl} /> */}
+            <Avatar
+              alt="Remy Sharp"
+              src={props.imgUrl}
+              sx={{ width: 200, height: 200 }}
+            />
+
             <Typography variant="h5">{props.name}</Typography>
-            <Typography variant="p">{props.country}</Typography>
-            <Typography variant="p">{props.age}</Typography>
-          </CardActionArea>
-          <CardActions>
-            {/* <TransitionsModal 
-            key={props.id}
-              id={props.id}
-              name={props.name}
-              gender={props.gender}
-              age={props.age}
-              country={props.country}
-              state={props.state}
-              city={props.city}
-              email={props.email}
-              imgUrl={props.picture}/> */}
-            <Button
-              size="small"
-              color="primary"
-              onClick={() => {navigate(`/user/${props.id}`, {state: props})}}
-            >
-              Detail
-            </Button>
-            <Button size="small" color="primary">
-              Message
-            </Button>
-          </CardActions>
+            <Typography variant="p">
+              <LocationOnIcon fontSize="small" />
+              {props.country}
+            </Typography>
+            <Typography variant="p">Age: {props.age}</Typography>
+            {/* </CardActionArea> */}
+            <CardActions>
+              <Button
+                size="small"
+                color="primary"
+                variant="contained"
+                onClick={() => {
+                  navigate(`/user/${props.id}`, { state: props });
+                }}
+              >
+                Detail
+              </Button>
+              <Button
+                size="small"
+                color="primary"
+                variant="outlined"
+                onClick={() => {
+                  // navigate(`/user/${props.id}`, { state: props });
+                  navigate(`/user/${props.id}/chat`, { state: props.id });
+                }}
+              >
+                Message
+              </Button>
+            </CardActions>
+          </Box>
         </Card>
       </Grid>
     </>

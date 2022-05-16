@@ -30,7 +30,7 @@ const useStyles = makeStyles({
 });
 
 function Chat() {
-  const count = useSelector((state) => state.count);
+  // const count = useSelector((state) => state.count);
   const location = useLocation();
   const classes = useStyles();
 

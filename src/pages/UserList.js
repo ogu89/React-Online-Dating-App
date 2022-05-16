@@ -24,20 +24,20 @@ function UserList() {
 
   return (
     <div>
-      <Container>
-        <Grid container spacing={5}>
-          {users.map((item) => (
+      <Container >
+        <Grid container spacing={4} sx={{py: 4}}>
+          {Object.keys(users).map((item) => (
             <UserCard
-              key={item.id}
-              id={item.id}
-              name={item.name}
-              gender={item.gender}
-              age={item.age}
-              country={item.country}
-              state={item.state}
-              city={item.city}
-              email={item.email}
-              imgUrl={item.picture.large}
+              key={item}
+              id={item}
+              name={users[item].name}
+              gender={users[item].gender}
+              age={users[item].age}
+              country={users[item].country}
+              state={users[item].state}
+              city={users[item].city}
+              email={users[item].email}
+              imgUrl={users[item].picture.large}
             />
           ))}
         </Grid>

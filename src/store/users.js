@@ -3,9 +3,25 @@ import axios from "axios";
 
 export const fetchUser = createAsyncThunk("users/fetchUser", async () => {
   const response = await axios.get("https://randomuser.me/api/?results=50");
-  let users = [];
+  // let users = [];
+  // for (let user of response.data.results) {
+  //   users.push({
+  //     id: user.login.uuid,
+  //     name: user.name.first + " " + user.name.last,
+  //     gender: user.gender,
+  //     age: user.dob.age,
+  //     country: user.location.country,
+  //     state: user.location.state,
+  //     city: user.location.city,
+  //     email: user.email,
+  //     picture: user.picture,
+  //   });
+  // }
+
+  let users = {};
   for (let user of response.data.results) {
-    users.push({
+    let id = user.login.uuid;
+    let user_obj = {
       id: user.login.uuid,
       name: user.name.first + " " + user.name.last,
       gender: user.gender,
@@ -15,8 +31,13 @@ export const fetchUser = createAsyncThunk("users/fetchUser", async () => {
       city: user.location.city,
       email: user.email,
       picture: user.picture,
-    });
+    };
+    users[id] = user_obj;
   }
+
+  Object.keys(users).map((i) => {
+    console.log(i);
+  });
 
   return users;
 });
@@ -28,19 +49,19 @@ export const getUserById = (id) => {
   // console.log(usersSlice.users)
   // console.log(getState().users);
   return 1;
-}
+};
 
 // export const getUserById = (id) => {
 //   return async (dispatch, getState) => {
 //        const currentState= getState().users;
-//       console.log(currentState) 
+//       console.log(currentState)
 //   };
 // };
 
 const usersSlice = createSlice({
   name: "users",
   initialState: {
-    users: [],
+    users: {},
     // status: null,
     loading: false,
     isSetProfile: false,
@@ -53,11 +74,15 @@ const usersSlice = createSlice({
     },
     [fetchUser.fulfilled]: (state, { payload }) => {
       // state.users = payload.results;
+      // payload.forEach((e) => {
+      //   const id = e.id;
+      //   state.itmes[id] = e;
+      // });
+      // state.status = "success";
       state.users = payload;
       state.count += 1;
       state.loading = false;
       state.isSetProfile = true;
-      // state.status = "success";
     },
     [fetchUser.rejected]: (state, action) => {
       // state.status = "failed";
