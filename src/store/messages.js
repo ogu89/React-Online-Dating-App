@@ -4,9 +4,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const messagesSlice = createSlice({
     name: 'messages',
     initialState: {
-        users : {
-            1: [],
-            2: []
+        messages : {
+            "000": []
         },
     },
     reducers:{

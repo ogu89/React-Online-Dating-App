@@ -7,7 +7,6 @@ import {
   TableContainer,
   TableRow,
   Typography,
-  Paper,
   TableCell,
   Card,
 } from "@mui/material";
@@ -17,14 +16,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { getUserById } from "../store/users";
 
 function UserDetail() {
-  const users = useSelector((state) => state.users);
+  // const users = useSelector((state) => state.users);
   const location = useLocation();
   const navigate = useNavigate();
   const user = location.state;
   //console.log(location.state.id);
-  // const obj = getUserById(location.state.id);
+  const obj = getUserById(location.state.id);
   // console.log(obj)
-  console.log(user);
 
   return (
     <>
