@@ -11,11 +11,12 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
+import { setMessages } from "../store/messages";
 
 // import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import SendIcon from "@mui/icons-material/Send";
-
+import { useDispatch } from "react-redux";
 const useStyles = makeStyles({
   // chatSection: {
   //     chatSection: {
@@ -32,12 +33,12 @@ const useStyles = makeStyles({
 function Chat() {
   // const count = useSelector((state) => state.count);
   const location = useLocation();
+  const dispatch = useDispatch();
   const classes = useStyles();
-  const [chatMessages, setChatMeesages] = useState([]);
+  // const [chatMessages, setChatMeesages] = useState([]);
   let [message, setMessage] = useState("");
 
   const handleMessageChange = (e) => {
-    console.log(e.target.value)
     setMessage(e.target.value);
   };
 
@@ -49,9 +50,9 @@ function Chat() {
 
   const sendMessage = () => {
     console.log("send");
-    setChatMeesages( arr => [...arr, message]);
+    // setChatMeesages( arr => [...arr, message]);
     setMessage("")
-    // dispatch(setMessage())
+    dispatch(setMessages([message, location.state]))
   };
 
   //   const listChatMessages = chatMessages.map((chatMessagesDto, index) =>{
@@ -59,7 +60,6 @@ function Chat() {
   //         <ListItemText primary={`${chatMessageDto.user}: ${chatMessageDto.message}`}></ListItemText>
   //     </ListItem>
   //   })
-  console.log(chatMessages);
 
   return (
     <>
