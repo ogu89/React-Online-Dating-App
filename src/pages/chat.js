@@ -16,7 +16,7 @@ import { setMessages } from "../store/messages";
 // import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import SendIcon from "@mui/icons-material/Send";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 const useStyles = makeStyles({
   // chatSection: {
   //     chatSection: {
@@ -31,12 +31,12 @@ const useStyles = makeStyles({
 });
 
 function Chat() {
-  // const count = useSelector((state) => state.count);
+  const messages = useSelector((state) => state.messages.messages);
   const location = useLocation();
   const dispatch = useDispatch();
   const classes = useStyles();
-  // const [chatMessages, setChatMeesages] = useState([]);
   let [message, setMessage] = useState("");
+  const index = messages.findIndex((x) => x.id === location.state);
 
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
@@ -49,11 +49,26 @@ function Chat() {
   };
 
   const sendMessage = () => {
-    console.log("send");
     // setChatMeesages( arr => [...arr, message]);
-    setMessage("")
-    dispatch(setMessages([message, location.state]))
+    setMessage("");
+    dispatch(setMessages([message, location.state]));
   };
+
+  const chatContent =
+    index === -1
+      ? null
+      : messages[index].chatLog.map((item, i) => (
+          <ListItem key={i}>
+            <Grid container>
+              <Grid item xs={12}>
+                <ListItemText align="right" primary={item}></ListItemText>
+              </Grid>
+              <Grid item xs={12}>
+                <ListItemText align="right" secondary="10:30"></ListItemText>
+              </Grid>
+            </Grid>
+          </ListItem>
+        ));
 
   //   const listChatMessages = chatMessages.map((chatMessagesDto, index) =>{
   //     <ListItem key={index}>
@@ -66,7 +81,7 @@ function Chat() {
       <Paper>
         <Container>
           <List className={classes.messageArea}>
-            <ListItem key="1">
+            <ListItem key="100000">
               <Grid container>
                 <Grid item xs={12}>
                   <ListItemText
@@ -79,7 +94,7 @@ function Chat() {
                 </Grid>
               </Grid>
             </ListItem>
-            <ListItem key="2">
+            <ListItem key="20000">
               <Grid container>
                 <Grid item xs={12}>
                   <ListItemText
@@ -92,7 +107,7 @@ function Chat() {
                 </Grid>
               </Grid>
             </ListItem>
-            <ListItem key="3">
+            <ListItem key="30000">
               <Grid container>
                 <Grid item xs={12}>
                   <ListItemText
@@ -105,6 +120,25 @@ function Chat() {
                 </Grid>
               </Grid>
             </ListItem>
+            {/* {messages[index].map((item) => (
+              <ListItem key="3">
+                <Grid container>
+                  <Grid item xs={12}>
+                    <ListItemText
+                      align="right"
+                      primary={item}
+                    ></ListItemText>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <ListItemText
+                      align="right"
+                      secondary="10:30"
+                    ></ListItemText>
+                  </Grid>
+                </Grid>
+              </ListItem>
+            ))} */}
+            {chatContent}
           </List>
         </Container>
         <Divider />

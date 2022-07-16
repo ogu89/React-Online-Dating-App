@@ -45,20 +45,17 @@ export const fetchUser = createAsyncThunk("users/fetchUser", async () => {
 //   return 1;
 // };
 
-
-
 // export const create = (id) => {
 //   return async (dispatch, getState) => {
 //        const currentState= getState().example;
-//       console.log(currentState) 
+//       console.log(currentState)
 //   };
 // };
 
-
 export const getUserById = (id) => {
   return async (dispatch, getState) => {
-       const currentState= getState().users[id];
-      console.log(currentState)
+    const currentState = getState().users[id];
+    console.log(currentState);
   };
 };
 
@@ -71,9 +68,7 @@ const usersSlice = createSlice({
     isSetProfile: false,
     count: 0,
   },
-  reducers:{
-
-  },
+  reducers: {},
   extraReducers: {
     [fetchUser.pending]: (state, action) => {
       // state.status = "loading";
