@@ -36,8 +36,10 @@ function Chat() {
   const dispatch = useDispatch();
   const classes = useStyles();
   let [message, setMessage] = useState("");
-  const index = messages.findIndex((x) => x.id === location.state);
-
+  // const index = messages.findIndex((x) => x.id === location.state);
+  const itemArray = messages[location.state];
+  console.log(location.state);
+  console.log(itemArray);
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
   };
@@ -50,7 +52,7 @@ function Chat() {
 
   const sendMessage = () => {
     const timeStamp = new Date();
-    
+
     let msgObj = {
       isMe: true,
       text: message,
@@ -62,10 +64,25 @@ function Chat() {
     
   };
 
+  // const chatContent =
+  //   index === -1
+  //     ? null
+  //     : messages[index].chatLog.map((item, i) => (
+  //         <ListItem key={i}>
+  //           <Grid container>
+  //             <Grid item xs={12}>
+  //               <ListItemText align="right" primary={item}></ListItemText>
+  //             </Grid>
+  //             <Grid item xs={12}>
+  //               <ListItemText align="right" secondary="10:30"></ListItemText>
+  //             </Grid>
+  //           </Grid>
+  //         </ListItem>
+  //       ));
   const chatContent =
-    index === -1
+    itemArray === undefined
       ? null
-      : messages[index].chatLog.map((item, i) => (
+      : itemArray.map((item, i) => (
           <ListItem key={i}>
             <Grid container>
               <Grid item xs={12}>
@@ -128,24 +145,6 @@ function Chat() {
                 </Grid>
               </Grid>
             </ListItem>
-            {/* {messages[index].map((item) => (
-              <ListItem key="3">
-                <Grid container>
-                  <Grid item xs={12}>
-                    <ListItemText
-                      align="right"
-                      primary={item}
-                    ></ListItemText>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <ListItemText
-                      align="right"
-                      secondary="10:30"
-                    ></ListItemText>
-                  </Grid>
-                </Grid>
-              </ListItem>
-            ))} */}
             {chatContent}
           </List>
         </Container>
