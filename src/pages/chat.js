@@ -49,9 +49,17 @@ function Chat() {
   };
 
   const sendMessage = () => {
-    // setChatMeesages( arr => [...arr, message]);
-    setMessage("");
+    const timeStamp = new Date();
+    
+    let msgObj = {
+      isMe: true,
+      text: message,
+      timeStamp: timeStamp,
+    };
+
     dispatch(setMessages([message, location.state]));
+    setMessage("");
+    
   };
 
   const chatContent =

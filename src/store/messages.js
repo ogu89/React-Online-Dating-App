@@ -24,11 +24,6 @@ const messagesSlice = createSlice({
   },
   reducers: {
     setMessages(state, action) {
-      // console.log(action.payload[0])
-      // if(state.messages.find(x => x.chatLog === action.payload[1])){
-      //     console.log("yes")
-      // }
-      // else console.log("no")
       const index = state.messages.findIndex((x) => x.id === action.payload[1]);
       if (index !== -1) {
         state.messages[index].chatLog.push(action.payload[0]);
