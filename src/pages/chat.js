@@ -38,8 +38,6 @@ function Chat() {
   let [message, setMessage] = useState("");
   // const index = messages.findIndex((x) => x.id === location.state);
   const itemArray = messages[location.state];
-  console.log(location.state);
-  console.log(itemArray);
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
   };
@@ -59,7 +57,7 @@ function Chat() {
       timeStamp: timeStamp,
     };
 
-    dispatch(setMessages([message, location.state]));
+    dispatch(setMessages([msgObj, location.state]));
     setMessage("");
     
   };
@@ -79,17 +77,16 @@ function Chat() {
   //           </Grid>
   //         </ListItem>
   //       ));
-  const chatContent =
-    itemArray === undefined
+  const chatContent = itemArray === undefined
       ? null
       : itemArray.map((item, i) => (
           <ListItem key={i}>
             <Grid container>
               <Grid item xs={12}>
-                <ListItemText align="right" primary={item}></ListItemText>
+                <ListItemText align="right" primary={item.text}></ListItemText>
               </Grid>
               <Grid item xs={12}>
-                <ListItemText align="right" secondary="10:30"></ListItemText>
+                <ListItemText align="right" secondary={item.timeStamp.toLocaleTimeString()}></ListItemText>
               </Grid>
             </Grid>
           </ListItem>
@@ -106,19 +103,6 @@ function Chat() {
       <Paper>
         <Container>
           <List className={classes.messageArea}>
-            <ListItem key="100000">
-              <Grid container>
-                <Grid item xs={12}>
-                  <ListItemText
-                    align="right"
-                    primary="Hey man, What's up ?"
-                  ></ListItemText>
-                </Grid>
-                <Grid item xs={12}>
-                  <ListItemText align="right" secondary="09:30"></ListItemText>
-                </Grid>
-              </Grid>
-            </ListItem>
             <ListItem key="20000">
               <Grid container>
                 <Grid item xs={12}>
@@ -129,19 +113,6 @@ function Chat() {
                 </Grid>
                 <Grid item xs={12}>
                   <ListItemText align="left" secondary="09:31"></ListItemText>
-                </Grid>
-              </Grid>
-            </ListItem>
-            <ListItem key="30000">
-              <Grid container>
-                <Grid item xs={12}>
-                  <ListItemText
-                    align="right"
-                    primary="Cool. i am good, let's catch up!"
-                  ></ListItemText>
-                </Grid>
-                <Grid item xs={12}>
-                  <ListItemText align="right" secondary="10:30"></ListItemText>
                 </Grid>
               </Grid>
             </ListItem>

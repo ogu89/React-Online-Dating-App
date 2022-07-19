@@ -30,7 +30,7 @@ function Header(props) {
           {isMatch ? (
             <>
               <Typography sx={{ fontSize: "2rem", paddingLeft: "10%" }}>
-                Dating
+                Chatbot App
               </Typography>
               <DrawerComp />
             </>
