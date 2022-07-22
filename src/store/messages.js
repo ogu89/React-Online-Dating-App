@@ -1,27 +1,29 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
+export const fetchMessage = createAsyncThunk("messages/fetchMessage", async (payload) => {
+  const text = payload[0]
+  const response = await axios.get(`https://api-monkedev.herokuapp.com/fun/chat?msg=${text}`);
+  console.log(text);
+  console.log(response.data.response)
+
+  const timeStamp = new Date();
+  let msgObj = {
+    isMe: false,
+    text: response.data.response,
+    timeStamp: timeStamp,
+  };
+  console.log(msgObj);
+
+
+  return [msgObj, payload[1]];
+});
 
 const messagesSlice = createSlice({
   name: "messages",
   initialState: {
-    // messages: [
-    //   {
-    //     id: "000",
-    //     chatLog: ["ddsd", "kdfs"],
-    //   },
-    //   {
-    //     id: "111",
-    //     chatLog: ["dks", "kdljsdf"],
-    //   },
-    //   {
-    //     id: "222",
-    //     chatLog: ["dfd", "lk"],
-    //   },
-    //   {
-    //     id: "96ecd300-b438-45d6-8ecd-bd1da8e7c85",
-    //     chatLog: ["dsf", "dsf", "fds"],
-    //   },
-    // ],
-    messages: {}
+    messages: {},
+    loading: false,
   },
   reducers: {
     setMessages(state, action) {
@@ -45,6 +47,18 @@ const messagesSlice = createSlice({
     },
     logout(state) {
       state.isLoggedOut = false;
+    },
+  },
+  extraReducers: {
+    [fetchMessage.pending]: (state, action) => {   
+      state.loading = true;
+    },
+    [fetchMessage.fulfilled]: (state, { payload }) => {
+      state.messages[payload[1]].push(payload[0]);
+      state.loading = false;
+    },
+    [fetchMessage.rejected]: (state, action) => {
+      state.loading = false;
     },
   },
 });

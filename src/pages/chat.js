@@ -12,6 +12,7 @@ import {
 import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import { setMessages } from "../store/messages";
+import { fetchMessage } from "../store/messages";
 
 // import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -59,7 +60,7 @@ function Chat() {
 
     dispatch(setMessages([msgObj, location.state]));
     setMessage("");
-    
+    dispatch(fetchMessage([message, location.state]));
   };
 
   // const chatContent =
@@ -77,7 +78,8 @@ function Chat() {
   //           </Grid>
   //         </ListItem>
   //       ));
-  const chatContent = itemArray === undefined
+  const chatContent =
+    itemArray === undefined
       ? null
       : itemArray.map((item, i) => (
           <ListItem key={i}>
@@ -86,7 +88,10 @@ function Chat() {
                 <ListItemText align="right" primary={item.text}></ListItemText>
               </Grid>
               <Grid item xs={12}>
-                <ListItemText align="right" secondary={item.timeStamp.toLocaleTimeString()}></ListItemText>
+                <ListItemText
+                  align="right"
+                  secondary={item.timeStamp.toLocaleTimeString()}
+                ></ListItemText>
               </Grid>
             </Grid>
           </ListItem>
