@@ -11,7 +11,7 @@ import {
 import InterestsIcon from "@mui/icons-material/Interests";
 import DrawerComp from "./Drawercomp";
 import { MenuData } from "./MenuData";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Header(props) {
   const [value, setValue] = useState(0);
@@ -21,6 +21,12 @@ function Header(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const location = useLocation();
+  console.log(location.pathname)
+  console.log(value)
+  const index = MenuData.findIndex(object => {
+    return location.pathname.includes(object.link);
+  });
 
   return (
     <React.Fragment>
@@ -36,13 +42,12 @@ function Header(props) {
             </>
           ) : (
             <>
-              <Typography>Dating App</Typography>
+              <Typography>Chatbot App</Typography>
               <Tabs
                 textColor="inherit"
                 sx={{ margin: "auto" }}
-                value={value}
+                value={index}
                 onChange={handleChange}
-                indicatorColor="secondary"
               >
                 {MenuData.map((val, key) => {
                   return (

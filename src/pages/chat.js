@@ -26,7 +26,8 @@ const useStyles = makeStyles({
   //       },
   // },
   messageArea: {
-    height: "80vh",
+    // height: "80vh",
+    height: "77vh",
     overflowY: "auto",
   },
 });
@@ -62,22 +63,10 @@ function Chat() {
     setMessage("");
     dispatch(fetchMessage([message, location.state]));
   };
+  const sideAlign = (isMe) => {
+    return isMe === true ? "right" : "left";
+  };
 
-  // const chatContent =
-  //   index === -1
-  //     ? null
-  //     : messages[index].chatLog.map((item, i) => (
-  //         <ListItem key={i}>
-  //           <Grid container>
-  //             <Grid item xs={12}>
-  //               <ListItemText align="right" primary={item}></ListItemText>
-  //             </Grid>
-  //             <Grid item xs={12}>
-  //               <ListItemText align="right" secondary="10:30"></ListItemText>
-  //             </Grid>
-  //           </Grid>
-  //         </ListItem>
-  //       ));
   const chatContent =
     itemArray === undefined
       ? null
@@ -85,11 +74,14 @@ function Chat() {
           <ListItem key={i}>
             <Grid container>
               <Grid item xs={12}>
-                <ListItemText align="right" primary={item.text}></ListItemText>
+                <ListItemText
+                  align={sideAlign(item.isMe)}
+                  primary={item.text}
+                ></ListItemText>
               </Grid>
               <Grid item xs={12}>
                 <ListItemText
-                  align="right"
+                  align={sideAlign(item.isMe)}
                   secondary={item.timeStamp.toLocaleTimeString()}
                 ></ListItemText>
               </Grid>
@@ -105,28 +97,12 @@ function Chat() {
 
   return (
     <>
-      <Paper>
         <Container>
-          <List className={classes.messageArea}>
-            <ListItem key="20000">
-              <Grid container>
-                <Grid item xs={12}>
-                  <ListItemText
-                    align="left"
-                    primary="Hey, Iam Good! What about you ?"
-                  ></ListItemText>
-                </Grid>
-                <Grid item xs={12}>
-                  <ListItemText align="left" secondary="09:31"></ListItemText>
-                </Grid>
-              </Grid>
-            </ListItem>
-            {chatContent}
-          </List>
+          <List className={classes.messageArea}>{chatContent}</List>
         </Container>
         <Divider />
-        <Grid container style={{ padding: "20px" }}>
-          <Grid item xs={11}>
+        <Grid container spacing={1}  sx={{pt: 3, mx:3}} >
+          <Grid item md={11} xs={9} sx={{p: 2}}>
             <TextField
               onChange={handleMessageChange}
               onKeyPress={handleEnterKey}
@@ -136,13 +112,12 @@ function Chat() {
               fullWidth
             />
           </Grid>
-          <Grid item align="right" xs={1}>
-            <Fab size="small" color="primary" aria-label="add">
+          <Grid item md={1} xs={3} >
+            <Fab size="small" color="primary" aria-label="add" sx={{mt:1 }}>
               <SendIcon onClick={sendMessage} />
             </Fab>
           </Grid>
         </Grid>
-      </Paper>
     </>
   );
 }

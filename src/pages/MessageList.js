@@ -8,7 +8,6 @@ function MessageList() {
 
   return (
     <>
-      <Typography variant="h2">Message list</Typography>
       <Grid container spacing={3} direction="column" >
         {/* {messageList.map((item) => (
         <p key={item.id}>{item.id}: {item.chatLog[item.chatLog.length-1]}</p>
