@@ -21,7 +21,7 @@ function UserCard(props) {
 
   return (
     <>
-      <Grid item xs={4}>
+      <Grid item xs={12} md={4}>
         <Card sx={{ maxWidth: 345, py: 2 }}>
           <Box
             sx={{

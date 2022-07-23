@@ -17,8 +17,11 @@ function UserList() {
 
 
   if (loading) {
-    return(<Box sx={{ display: 'flex' }}>
-    <CircularProgress />
+    return(<Box  display="flex"
+    justifyContent="center"
+    alignItems="center"
+    minHeight="100vh">
+    <CircularProgress size={100}/>
   </Box>); 
   }
 

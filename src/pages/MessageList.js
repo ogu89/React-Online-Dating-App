@@ -16,7 +16,7 @@ function MessageList() {
         direction="column"
       >
         {Object.keys(messageList).map((item, i) => (
-          <Grid item key={i} sx={{}}>
+          <Grid item key={i}>
             <Paper>
               <Box sx={{ display: "flex", py: 3, px: 2 }}>
                 <Avatar

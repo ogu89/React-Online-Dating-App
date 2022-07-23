@@ -1,25 +1,31 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Button } from "@mui/material";
-import { useNavigate } from 'react-router-dom';
+import { Box, Button, Grid } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-function Home(){
-    const count = useSelector((state) => state.count);
-    const navigate = useNavigate();
-    const handleClick = () => {
-        navigate('/user');
-    } 
+function Home() {
+  const count = useSelector((state) => state.count);
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/user");
+  };
 
-    return(
-        <div>
-            <h1>Home</h1>
-            <Button onClick={handleClick}>Meet new people </Button>
-        </div>
-        
-    );
+  return (
+    <>
+      <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        style={{ minHeight: "100vh" }}
+      >
+        <Grid item xs={3}>
+        <Button variant="contained" size="large" onClick={handleClick}>Meet new people </Button>
+        </Grid>
+      </Grid>
+    </>
+  );
 }
-
-
-
 
 export default Home;

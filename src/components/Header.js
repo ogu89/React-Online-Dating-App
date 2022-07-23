@@ -36,13 +36,13 @@ function Header(props) {
           {isMatch ? (
             <>
               <Typography sx={{ fontSize: "2rem", paddingLeft: "10%" }}>
-                Chatbot App
+                Daing
               </Typography>
               <DrawerComp />
             </>
           ) : (
             <>
-              <Typography>Chatbot App</Typography>
+              <Typography sx={{ml:1}} variant="h5">Dating</Typography>
               <Tabs
                 textColor="inherit"
                 sx={{ margin: "auto" }}
