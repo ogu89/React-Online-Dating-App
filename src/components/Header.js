@@ -22,8 +22,6 @@ function Header(props) {
     setValue(newValue);
   };
   const location = useLocation();
-  console.log(location.pathname)
-  console.log(value)
   const index = MenuData.findIndex(object => {
     return location.pathname.includes(object.link);
   });
