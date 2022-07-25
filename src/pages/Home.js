@@ -20,7 +20,6 @@ function Home() {
       >
         <Grid item xs={3}>
         <Button variant="contained" size="large" onClick={handleClick}>Meet new people </Button>
-        <Typography>Home</Typography>
         </Grid>
       </Grid>
     </>
