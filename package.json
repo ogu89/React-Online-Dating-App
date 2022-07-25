@@ -2,7 +2,7 @@
   "name": "react-online-dating-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ogu89.github.io",
+  "homepage": "https://ogu89.github.io/React-Online-Dating-App/",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
