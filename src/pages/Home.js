@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
@@ -20,6 +20,7 @@ function Home() {
       >
         <Grid item xs={3}>
         <Button variant="contained" size="large" onClick={handleClick}>Meet new people </Button>
+        <Typography>Home</Typography>
         </Grid>
       </Grid>
     </>
