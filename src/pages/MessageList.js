@@ -1,10 +1,12 @@
 import { Avatar, Typography, Box, Grid, Paper } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function MessageList() {
   const messageList = useSelector((state) => state.messages.messages);
   const usersList = useSelector((state) => state.users.users);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -18,7 +20,20 @@ function MessageList() {
         {Object.keys(messageList).map((item, i) => (
           <Grid item key={i}>
             <Paper>
-              <Box sx={{ display: "flex", py: 3, px: 2 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  py: 3,
+                  px: 2,
+                  ":hover": {
+                    boxShadow: 3,
+                    cursor: "pointer",
+                  },
+                }}
+                onClick={() => {
+                  navigate(`/user/${item}/chat`, { state: item });
+                }}
+              >
                 <Avatar
                   alt="Remy Sharp"
                   src={usersList[item].picture.large}

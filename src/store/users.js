@@ -75,11 +75,6 @@ const usersSlice = createSlice({
       state.loading = true;
     },
     [fetchUser.fulfilled]: (state, { payload }) => {
-      // state.users = payload.results;
-      // payload.forEach((e) => {
-      //   const id = e.id;
-      //   state.itmes[id] = e;
-      // });
       // state.status = "success";
       state.users = payload;
       state.count += 1;

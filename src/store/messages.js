@@ -4,8 +4,6 @@ import axios from "axios";
 export const fetchMessage = createAsyncThunk("messages/fetchMessage", async (payload) => {
   const text = payload[0]
   const response = await axios.get(`https://api-monkedev.herokuapp.com/fun/chat?msg=${text}`);
-  console.log(text);
-  console.log(response.data.response)
 
   const timeStamp = new Date();
   let msgObj = {
@@ -13,8 +11,6 @@ export const fetchMessage = createAsyncThunk("messages/fetchMessage", async (pay
     text: response.data.response,
     timeStamp: timeStamp,
   };
-  console.log(msgObj);
-
 
   return [msgObj, payload[1]];
 });

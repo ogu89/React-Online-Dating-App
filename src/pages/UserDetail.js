@@ -11,18 +11,14 @@ import {
   Card,
 } from "@mui/material";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { getUserById } from "../store/users";
+
 
 function UserDetail() {
   // const users = useSelector((state) => state.users);
   const location = useLocation();
   const navigate = useNavigate();
   const user = location.state;
-  //console.log(location.state.id);
-  const obj = getUserById(location.state.id);
-  // console.log(obj)
 
   return (
     <>
@@ -49,7 +45,7 @@ function UserDetail() {
             <TableBody>
               <TableRow>
                 <TableCell component="th" scope="row">
-                  gender
+                  Gender
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
                   {user.gender}
@@ -57,7 +53,7 @@ function UserDetail() {
               </TableRow>
               <TableRow>
                 <TableCell component="th" scope="row">
-                  age
+                  Age
                 </TableCell>
                 <TableCell align="right">{user.age}</TableCell>
               </TableRow>

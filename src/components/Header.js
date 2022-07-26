@@ -34,7 +34,7 @@ function Header(props) {
           {isMatch ? (
             <>
               <Typography sx={{ fontSize: "2rem", paddingLeft: "10%" }}>
-                Daing
+                Dating
               </Typography>
               <DrawerComp />
             </>
@@ -59,8 +59,6 @@ function Header(props) {
                     />
                   );
                 })}
-                {/* <Tab label="UserList" />
-                <Tab label="Message" /> */}
               </Tabs>
             </>
           )}

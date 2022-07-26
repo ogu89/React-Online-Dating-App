@@ -1,14 +1,12 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
+// import { useSelector } from "react-redux";
 import Card from "@mui/material/Card";
 // import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import {
   Avatar,
   Box,
   Button,
-  CardActionArea,
   CardActions,
   Grid,
 } from "@mui/material";
@@ -16,7 +14,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useNavigate } from "react-router-dom";
 
 function UserCard(props) {
-  const count = useSelector((state) => state.users.users);
+  // const count = useSelector((state) => state.users.users);
   const navigate = useNavigate();
 
   return (
@@ -30,8 +28,6 @@ function UserCard(props) {
               alignItems: "center",
             }}
           >
-            {/* <CardActionArea> */}
-            {/* <CardMedia component="img" image={props.imgUrl} /> */}
             <Avatar
               alt="Remy Sharp"
               src={props.imgUrl}
@@ -61,7 +57,6 @@ function UserCard(props) {
                 color="primary"
                 variant="outlined"
                 onClick={() => {
-                  // navigate(`/user/${props.id}`, { state: props });
                   navigate(`/user/${props.id}/chat`, { state: props.id });
                 }}
               >
