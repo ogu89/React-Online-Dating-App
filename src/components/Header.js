@@ -22,9 +22,9 @@ function Header(props) {
     setValue(newValue);
   };
   const location = useLocation();
-  const index = MenuData.findIndex(object => {
+  const index = location.pathname === "/" ? false : MenuData.findIndex(object => {
     return location.pathname.includes(object.link);
-  });
+  }); 
 
   return (
     <React.Fragment>
